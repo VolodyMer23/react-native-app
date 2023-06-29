@@ -8,13 +8,26 @@ import {
   TextButton,
   FormWrapper,
   KbdAvoiViewWrapper,
+  ShowPassBtn,
+  ShowPassText,
 } from "../StyledComponents";
 import { ImageBackground } from "react-native";
 
 function LoginScreen({ navigation }) {
-  const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hidePass, setHidePass] = useState(true);
+
+  const showToastWithGravityAndOffset = () => {
+    ToastAndroid.showWithGravityAndOffset(
+      "A wild toast appeared!",
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+      25,
+      50
+    );
+  };
+
   return (
     <Wrapper>
       <ImageBackground
@@ -40,7 +53,13 @@ function LoginScreen({ navigation }) {
                 value={password}
                 placeholder="Пароль"
                 placeholderTextColor={"#bdbdbd"}
+                secureTextEntry={hidePass}
               />
+              <ShowPassBtn>
+                <ShowPassText onPress={() => setHidePass(!hidePass)}>
+                  {hidePass ? "Показати" : "Приховати"}
+                </ShowPassText>
+              </ShowPassBtn>
             </InputView>
             <FormButton>
               <TextButton>Увійти</TextButton>

@@ -25,13 +25,14 @@ export const Wrapper = styled(View)`
 export const InputView = styled(SafeAreaView)`
   display: flex;
   justify-content: center;
-
+  align-items: center;
   text-align: center;
   gap: 16px;
   width: 90%;
 `;
 
 export const Input = styled(TextInput)`
+  min-width: 90%;
   height: 46px;
   padding: 4px;
   padding-left: 8px;
@@ -63,7 +64,6 @@ export const FormWrapper = styled(View)`
   position: absolute;
   bottom: 0;
   width: 100%;
-  
 
   /* margin-top: auto; */
   display: flex;
@@ -91,4 +91,23 @@ export const TextLink = styled(Text)`
   font-size: 14px;
   font-weight: 400;
   text-decoration: underline;
+`;
+
+export const ShowPassBtn = styled(TouchableOpacity)`
+  position: absolute;
+  right: -10%;
+  bottom: 15px;
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 16px;
+`;
+export const ShowPassText = styled(Text)`
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 400;
+  color: blue;
 `;

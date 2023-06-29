@@ -9,6 +9,8 @@ import {
   FormWrapper,
   KbdAvoiViewWrapper,
   TextLink,
+  ShowPassBtn,
+  ShowPassText,
 } from "../StyledComponents";
 import { ImageBackground } from "react-native";
 
@@ -16,6 +18,7 @@ export default function RegistrationScreen({ navigation }) {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hidePass, setHidePass] = useState(true);
 
   return (
     <Wrapper>
@@ -48,7 +51,13 @@ export default function RegistrationScreen({ navigation }) {
                 value={password}
                 placeholder="Пароль"
                 placeholderTextColor={"#bdbdbd"}
+                secureTextEntry={hidePass}
               />
+              <ShowPassBtn>
+                <ShowPassText onPress={() => setHidePass(!hidePass)}>
+                  {hidePass ? "Показати" : "Приховати"}
+                </ShowPassText>
+              </ShowPassBtn>
             </InputView>
             <FormButton>
               <TextButton>Зареєструватися</TextButton>
