@@ -1,12 +1,39 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React, { useState } from "react";
+import {
+  Title,
+  Wrapper,
+  Input,
+  InputView,
+  FormButton,
+  TextButton,
+} from "../StyledComponents";
 
-function LoginScreen() {
+function LoginScreen({ navigation }) {
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
-    <View>
-      <Text>Login Screen</Text>
-    </View>
-  )
+    <Wrapper>
+      <Title>Увійти</Title>
+      <InputView>
+        <Input
+          onChangeText={setEmail}
+          value={email}
+          placeholder="Адреса електронної пошти"
+          placeholderTextColor={"#bdbdbd"}
+        />
+        <Input
+          onChangeText={setPassword}
+          value={password}
+          placeholder="Пароль"
+          placeholderTextColor={"#bdbdbd"}
+        />
+      </InputView>
+      <FormButton>
+        <TextButton>Зареєструватися</TextButton>
+      </FormButton>
+    </Wrapper>
+  );
 }
 
-export default LoginScreen
+export default LoginScreen;
