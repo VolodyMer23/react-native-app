@@ -1,7 +1,7 @@
 import React from "react";
 import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
-import { TextButton, FormButton} from "../../StyledComponents";
-import { Wrapper, BtnWrapper } from "./Home.styled";
+import { TextButton} from "../../StyledComponents";
+import { Wrapper, BtnWrapper, AuthButton } from "./Home.styled";
 
 function Home({ navigation }) {
   return (
@@ -12,12 +12,12 @@ function Home({ navigation }) {
         style={{ width: "100%", height: "100%" }}
       >
         <BtnWrapper>
-          <FormButton onPress={() => navigation.navigate("Registartion")}>
+          <AuthButton onPress={() => navigation.navigate("Registartion")}>
             <TextButton>Реєстрація</TextButton>
-          </FormButton>
-          <FormButton onPress={() => navigation.navigate("Login")}>
+          </AuthButton>
+          <AuthButton onPress={() => navigation.navigate("Login")}>
             <TextButton>Увійти</TextButton>
-          </FormButton>
+          </AuthButton>
         </BtnWrapper>
       </ImageBackground>
     </Wrapper>

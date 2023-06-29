@@ -6,7 +6,10 @@ import {
   InputView,
   FormButton,
   TextButton,
+  FormWrapper,
+  KbdAvoiViewWrapper,
 } from "../StyledComponents";
+import { ImageBackground } from "react-native";
 
 function LoginScreen({ navigation }) {
   const [login, setLogin] = useState("");
@@ -14,24 +17,37 @@ function LoginScreen({ navigation }) {
   const [password, setPassword] = useState("");
   return (
     <Wrapper>
-      <Title>Увійти</Title>
-      <InputView>
-        <Input
-          onChangeText={setEmail}
-          value={email}
-          placeholder="Адреса електронної пошти"
-          placeholderTextColor={"#bdbdbd"}
-        />
-        <Input
-          onChangeText={setPassword}
-          value={password}
-          placeholder="Пароль"
-          placeholderTextColor={"#bdbdbd"}
-        />
-      </InputView>
-      <FormButton>
-        <TextButton>Зареєструватися</TextButton>
-      </FormButton>
+      <ImageBackground
+        source={require("../images/login-bg.jpg")}
+        resizeMode="cover"
+        style={{ width: "100%", height: "100%" }}
+      >
+        <FormWrapper>
+          <KbdAvoiViewWrapper
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+          >
+            <Title>Увійти</Title>
+            <InputView>
+              <Input
+                onChangeText={setEmail}
+                value={email}
+                placeholder="Адреса електронної пошти"
+                placeholderTextColor={"#bdbdbd"}
+              />
+              <Input
+                onChangeText={setPassword}
+                contextMenuHidden={true}
+                value={password}
+                placeholder="Пароль"
+                placeholderTextColor={"#bdbdbd"}
+              />
+            </InputView>
+            <FormButton>
+              <TextButton>Увійти</TextButton>
+            </FormButton>
+          </KbdAvoiViewWrapper>
+        </FormWrapper>
+      </ImageBackground>
     </Wrapper>
   );
 }

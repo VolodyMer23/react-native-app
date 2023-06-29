@@ -10,7 +10,7 @@ import {
   KbdAvoiViewWrapper,
   TextLink,
 } from "../StyledComponents";
-import { ImageBackground, KeyboardAvoidingView } from "react-native";
+import { ImageBackground } from "react-native";
 
 export default function RegistrationScreen({ navigation }) {
   const [login, setLogin] = useState("");
