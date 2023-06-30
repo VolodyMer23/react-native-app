@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { ImageBackground } from "react-native";
+import { auth } from "../../firebaseConfig";
+
 import {
   Title,
   Wrapper,
@@ -12,13 +16,40 @@ import {
   ShowPassBtn,
   ShowPassText,
 } from "../StyledComponents";
-import { ImageBackground } from "react-native";
 
 export default function RegistrationScreen({ navigation }) {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePass, setHidePass] = useState(true);
+
+  const signUp = async () => {
+    try {
+      const resp = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      console.log("user :>> ", resp);
+      setEmail("");
+      setHidePass("");
+    } catch (error) {
+      throw error;
+    }
+    // const resp = await createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     console.log('user :>> ', user);
+    //     navigation.navigate("Login");
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     // ..
+    //   });
+  };
 
   return (
     <Wrapper>
@@ -34,20 +65,22 @@ export default function RegistrationScreen({ navigation }) {
             <Title>Реєстрація</Title>
             <InputView>
               <Input
-                onChangeText={setLogin}
+                onChangeText={(text) => setLogin(text)}
                 value={login}
                 placeholder="Логін"
                 placeholderTextColor={"#bdbdbd"}
               />
               <Input
-                onChangeText={setEmail}
+                onChangeText={(text) => setEmail(text)}
                 value={email}
+                autoCapitalize="none"
                 placeholder="Адреса електронної пошти"
                 placeholderTextColor={"#bdbdbd"}
               />
               <Input
-                onChangeText={setPassword}
+                onChangeText={(pass) => setPassword(pass)}
                 contextMenuHidden={true}
+                autoCapitalize="none"
                 value={password}
                 placeholder="Пароль"
                 placeholderTextColor={"#bdbdbd"}
@@ -59,7 +92,7 @@ export default function RegistrationScreen({ navigation }) {
                 </ShowPassText>
               </ShowPassBtn>
             </InputView>
-            <FormButton>
+            <FormButton onPress={signUp}>
               <TextButton>Зареєструватися</TextButton>
             </FormButton>
             <TextLink onPress={() => navigation.navigate("Login")}>

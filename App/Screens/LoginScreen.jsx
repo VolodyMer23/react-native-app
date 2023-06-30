@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../../firebaseConfig";
+import {
   Title,
   Wrapper,
   Input,
@@ -11,21 +18,41 @@ import {
   ShowPassBtn,
   ShowPassText,
 } from "../StyledComponents";
-import { ImageBackground } from "react-native";
+import { ImageBackground, ToastAndroid } from "react-native";
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePass, setHidePass] = useState(true);
 
+  console.log("email :>> ", email);
+  console.log("password :>> ", password);
+
   const showToastWithGravityAndOffset = () => {
     ToastAndroid.showWithGravityAndOffset(
-      "A wild toast appeared!",
+      "You are logged in",
       ToastAndroid.LONG,
       ToastAndroid.BOTTOM,
       25,
       50
     );
+  };
+
+  const loginDB = async () => {
+    try {
+      const credentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setEmail("");
+      setPassword("");
+      showToastWithGravityAndOffset();
+      navigation.navigate("Posts");
+      return credentials.user;
+    } catch (error) {
+      throw error;
+    }
   };
 
   return (
@@ -42,15 +69,17 @@ function LoginScreen({ navigation }) {
             <Title>Увійти</Title>
             <InputView>
               <Input
-                onChangeText={setEmail}
+                onChangeText={(text) => setEmail(text)}
                 value={email}
+                autoCapitalize="none"
                 placeholder="Адреса електронної пошти"
                 placeholderTextColor={"#bdbdbd"}
               />
               <Input
-                onChangeText={setPassword}
+                onChangeText={(pass) => setPassword(pass)}
                 contextMenuHidden={true}
                 value={password}
+                autoCapitalize="none"
                 placeholder="Пароль"
                 placeholderTextColor={"#bdbdbd"}
                 secureTextEntry={hidePass}
@@ -61,7 +90,7 @@ function LoginScreen({ navigation }) {
                 </ShowPassText>
               </ShowPassBtn>
             </InputView>
-            <FormButton>
+            <FormButton onPress={loginDB}>
               <TextButton>Увійти</TextButton>
             </FormButton>
           </KbdAvoiViewWrapper>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1020677018814",
+    "project_id": "rnapp-a3e84",
+    "storage_bucket": "rnapp-a3e84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020677018814:android:05d3c33c68fd3f44a93aef",
+        "android_client_info": {
+          "package_name": "mynative.blog.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020677018814-titkca6jvlmk9ba6j3let6epkhbit8v0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhZKTuoo7C2sFvLKn3a27bQge7C2rvVvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020677018814-titkca6jvlmk9ba6j3let6epkhbit8v0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
