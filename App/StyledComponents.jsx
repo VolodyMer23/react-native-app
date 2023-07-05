@@ -92,6 +92,11 @@ export const TextLink = styled(Text)`
   font-weight: 400;
   text-decoration: underline;
 `;
+export const SubText= styled(Text)`
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 400;
+`;
 
 export const ShowPassBtn = styled(TouchableOpacity)`
   position: absolute;
